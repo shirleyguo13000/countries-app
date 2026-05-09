@@ -1,0 +1,23 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0.2rem 0.2rem;
+}
+
+.link {
+    text-decoration: none;
+}
+
+header {
+    border-bottom: 2px solid #DDDDDD;
+    padding: 1rem;
+}
