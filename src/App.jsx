@@ -3,6 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import CountryDetail from './pages/CountryDetail';
 import SavedCountries from './pages/SavedCountries';
+import localData from './localData';
 
 
 function App() {
@@ -13,17 +14,19 @@ function App() {
       <nav>
         <ul>
             <li>
-            <Link  to="/" className="link" style={{color: 'black', fontWeight: '600', fontSize:'25px'}}>Where in the World?</Link>
+            <Link  to="/" className="link1">Where in the World?</Link>
           </li>
           <li>
-            <Link  to="/SavedCount" className="link" style={{fontWeight: '400', color: 'black', fontSize:'13px', marginRight:'1rem'}}>Saved Countries</Link>
+            <Link  to="/SavedCountries" className="link2">Saved Countries</Link>
               </li>
             </ul>
             </nav>
-            </header>
+        </header>
+        
+     
    
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={ <Home countriesData={localData} />} />
           <Route path="/CountryDetail" element={<CountryDetail />} />
           <Route path="/SavedCountries" element={<SavedCountries />} />
       </Routes>
