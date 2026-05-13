@@ -10,8 +10,9 @@ function Home({ countriesData }) {
         <div className="grid-container">
             {/* using alphabetically sorted variable of data to be looped through */}
             {sortedCountries.map((country) => (
-            <CountryCard key={country} dataFromLocalFile={country} />
+                <CountryCard key={country.cca3} country={country} />
             ))}
+            
         </div>
     )
 }

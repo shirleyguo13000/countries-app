@@ -1,5 +1,6 @@
 import "./App.css";
 import { Routes, Route, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Home from './pages/Home';
 import CountryDetail from './pages/CountryDetail';
 import SavedCountries from './pages/SavedCountries';
@@ -7,6 +8,27 @@ import localData from './localData';
 
 
 function App() {
+  const [countries, setCountries] = useState([]);
+
+
+   const countryApi = async () => {
+    try {
+      const response = await fetch(
+        `https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders`
+      );
+      const data = await response.json();
+      console.log('data', data);
+      setCountries(countryApi);
+    } catch (error) {
+      console.log('error:', error.message);
+    }
+   };
+  
+       useEffect(() => {
+       countryApi();
+     }, []);
+  
+  
   return (
     <>
       <div>
@@ -26,8 +48,8 @@ function App() {
      
    
       <Routes>
-        <Route path="/" element={ <Home countriesData={localData} />} />
-          <Route path="/CountryDetail" element={<CountryDetail />} />
+        <Route path="/" element={ <Home countriesData={countries} />} />
+          <Route path="/CountryDetail/:countryName" element={<CountryDetail countriesData={countries}/>} />
           <Route path="/SavedCountries" element={<SavedCountries />} />
       </Routes>
     </div>
