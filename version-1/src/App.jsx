@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Home from "./pages/Home";
 import CountryDetail from "./pages/CountryDetail";
 import SavedCountries from "./pages/SavedCountries";
+// local files are backup incase API doesn't load
 import localData from "./localData";
 
 function App() {
