@@ -33,6 +33,11 @@ nav ul {
     align-items:center;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .link2 {
     font-weight: 300;
     color: black;
@@ -85,6 +90,7 @@ header {
     font-size: 16px;
     font-weight: 350;
     margin: 3px 5px;
+    text-decoration: none;
 }
 
 .grid-container {
@@ -154,4 +160,56 @@ form input {
    font-size: 20px; 
 }
 
+
+}
+
+.country-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.country-details-img {
+    display: block;
+    border-radius: 8px;
+    margin: 0 auto;
+    object-fit: cover;
+    max-width: 400px;
+    box-shadow: 0px 0px 4px 2px hsl(0, 0%, 80%);
+}
+
+.country-details-h1 {
+    font-size: 1.6rem;
+}
+
+.country-details-btn {
+    border: none;
+    padding: 0.3rem 1.3rem;
+    font-family: Nunito Sans;
+    margin-top: 2rem;
+    background-color: white;
+    box-shadow: 0px 0px 4px 2px hsl(0, 0%, 80%);
+    border-radius: 3px;
+    margin-bottom: 1rem;
+}
+
+.country-details-backbtn {
+    margin-left: 1rem;
+}
+
+@media (max-width: 650px) {
+    .country-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .country-details-img {
+        max-width: 80%;
+        margin: 1rem;
+    }
+
+    .country-details-child-grid2 {
+        text-align: left;
+        margin-left: 1rem;
+    }
 }
