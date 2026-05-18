@@ -8,7 +8,11 @@ function CountryCard({ country }) {
     <Link to={`/CountryDetail/${country.name.common}`}>
       {/* div for css styling */}
       <div className="country-card">
-        <img src={country.flags.png} alt={country.flags.alt} className="country-card-img" />
+        <img
+          src={country.flags.svg || country.flags.png}
+          alt={country.flags.alt}
+          className="country-card-img"
+        />
         {/* div to style the words on the card */}
         <div className="country-card-lowerhalf">
           <h3 className="country-card-h3">{country.name.common}</h3>
