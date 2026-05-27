@@ -7,7 +7,7 @@ export default defineConfig({
       "/api": {
         target: "https://backend-answer-keys.onrender.com",
         changeOrigin: true,
-        secure: false,
+        secure: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },

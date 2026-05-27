@@ -103,9 +103,9 @@ RESPONSE: "Success! The country is saved."
 ❓ WHERE: country details page
 
 ❓ HOW:
-Step 1: User clicks "save" which calls 
-Step 2: 
-Step 3: 
+Step 1: User clicks "save" which calls handleChange to store the saved countries into a state variable
+Step 2: Async - await ... try - catch
+Step 3: send post request
 Add more steps as needed!
 
 ========================
@@ -113,24 +113,23 @@ Add more steps as needed!
 ========================
 
 ❓ WHAT...
-TYPE OF HTTP REQUEST (GET OR POST): ------
-API ENDPOINT: ------
+TYPE OF HTTP REQUEST (GET OR POST): GET
+API ENDPOINT: get-all-saved-countries
 
 REQUEST BODY DATA TYPE (if applicable): ------
 REQUEST BODY (if applicable): ------
 
-RESPONSE DATA TYPE: ------
-RESPONSE: ------
+RESPONSE DATA TYPE: object array
+RESPONSE: Display of saved country cards
+❓ WHEN: When user opens saved countries page
 
-❓ WHEN: ------
-
-❓ WHERE: ------
+❓ WHERE: On the saved countries page
 
 ❓ HOW:
-Step 1: ------
-Step 2: ------
-Step 3: ------
-Add more steps as needed!
+Step 1: create a variable linked to saved country data
+Step 2: fetch request, async await, use try... catch
+Step 3: save the info into state variable
+Step 4: Use useEffect with empty dependency rate
 
 =================================
 📊 COUNTRY COUNTS DATA
