@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import "../App.css";
 
-function CountryCard({ country }) {
+function CountryCard({ country, getViewCount }) {
   // console.log("data from country",country);
   return (
     //  Dynamic router to make URL update according to country name in UI link
     <Link to={`/CountryDetail/${country.name.common}`}>
       {/* div for css styling */}
-      <div className="country-card">
+      <div className="country-card" onClick={() => getViewCount(country)}>
         <img
           src={country.flags.svg || country.flags.png}
           alt={country.flags.alt}

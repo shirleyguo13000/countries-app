@@ -47,6 +47,7 @@ function CountryDetail({ countriesData }) {
           <p className="country-details-p">Population: {country.population}</p>
           <p className="country-details-p">Capital: {country.capital}</p>
           <p className="country-details-p">Region: {country.region}</p>
+          <p className="country-details-p">Viewed: </p>
         </div>
       </div>
     </div>
