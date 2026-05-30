@@ -14,6 +14,8 @@ function SavedCountries({ countriesData }) {
   });
   // holds new user's data
   const [newUserName, setNewUserName] = useState(null);
+  // for conditional rendering of the welcome message
+  const [submitted, setSubmitted] = useState(false);
 
   // getting newest user data through async await, use try... catch, fetch request
   const getUserNewestInfo = async () => {
@@ -59,6 +61,8 @@ function SavedCountries({ countriesData }) {
       country: "",
       bio: "",
     });
+
+    setSubmitted(true);
   };
   // fetching newest user info when we load the page
   useEffect(() => {
@@ -95,7 +99,7 @@ function SavedCountries({ countriesData }) {
             />
           ))}
         </div>
-        <h1>Welcome, {newUserName}!</h1>
+        {submitted && <h1>Welcome, {newUserName}!</h1>}
         <form className="saved-countries-form">
           <h2>My Profile</h2>
           <input

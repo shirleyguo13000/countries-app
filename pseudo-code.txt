@@ -39,7 +39,13 @@ TYPE OF HTTP REQUEST (GET OR POST): POST
 API ENDPOINT: /add-one-user
 
 REQUEST BODY DATA TYPE (if applicable): object
-REQUEST BODY (if applicable): ------
+REQUEST BODY (if applicable): 
+{
+  "name": "Alice",
+  "country_name": "Germany",
+  "email": "alice@example.com",
+  "bio": "A little about Alice"
+}
 
 RESPONSE DATA TYPE: string
 RESPONSE: "Success! User has been added"
@@ -93,7 +99,11 @@ TYPE OF HTTP REQUEST (GET OR POST): POST
 API ENDPOINT: /save-one-country
 
 REQUEST BODY DATA TYPE (if applicable): Array of object
-REQUEST BODY (if applicable): N/A
+REQUEST BODY (if applicable): 
+{
+  "country_name": "Brazil"
+}
+
 
 RESPONSE DATA TYPE: string
 RESPONSE: "Success! The country is saved."
@@ -116,12 +126,12 @@ Add more steps as needed!
 TYPE OF HTTP REQUEST (GET OR POST): GET
 API ENDPOINT: get-all-saved-countries
 
-REQUEST BODY DATA TYPE (if applicable): ------
-REQUEST BODY (if applicable): ------
+REQUEST BODY DATA TYPE (if applicable): N/A
+REQUEST BODY (if applicable): N/A
 
 RESPONSE DATA TYPE: object array
 RESPONSE: Display of saved country cards
-❓ WHEN: When user opens saved countries page
+❓ WHEN: When user opens saved countries
 
 ❓ WHERE: On the saved countries page
 
@@ -141,21 +151,27 @@ Step 4: Use useEffect with empty dependency rate
 NOTE: We combine storing & retrieving country counts data into one section because they always happen together. Each time we look up a country’s view count, we also need to increase it and save the new total.
 
 ❓ WHAT...
-TYPE OF HTTP REQUEST (GET OR POST): ------
-API ENDPOINT: ------
+TYPE OF HTTP REQUEST (GET OR POST): POST
+API ENDPOINT: update-one-country-count
 
-REQUEST BODY DATA TYPE (if applicable): ------
-REQUEST BODY (if applicable): ------
+REQUEST BODY DATA TYPE (if applicable): object
+REQUEST BODY (if applicable): 
+{
+  "country_name": "France"
+}
 
-RESPONSE DATA TYPE: ------
-RESPONSE: ------
+RESPONSE DATA TYPE: object
+RESPONSE: 
+{
+  "count": 3
+}
 
-❓ WHEN: ------
+❓ WHEN: when user clicks open a country from the home page
 
-❓ WHERE: ------
+❓ WHERE: on home page where all the flags are
 
 ❓ HOW:
-Step 1: ------
-Step 2: ------
-Step 3: ------
+Step 1: set up variable to save view count data from POSt API call that happens later
+Step 2: event listener which calls the POST API when user clicks onto the flag
+Step 3: using the usestate variable declared earlier, update the view count in country details page 
 Add more steps as needed!
