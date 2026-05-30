@@ -10,7 +10,7 @@ import localData from "./localData";
 function App() {
   // state variable to store API data
   const [countries, setCountries] = useState([]);
-  //  state variable declared to store the POST API data
+  //  state variable declared to store the POST API response
   const [viewCountData, setViewCountData] = useState(null);
 
   // API call. Using async so that each command waits for the action to be completed before moving on to next
@@ -34,7 +34,7 @@ function App() {
     countryApi();
   }, []);
 
-  //   fetch country view count API call
+  //   POST country view count API call and recording response in setViewCount
   const getViewCount = async (data) => {
     await fetch("/api/update-one-country-count", {
       method: "POST",
@@ -45,6 +45,8 @@ function App() {
         country_name: data.name.common,
       }),
     });
+    const countResponse = await response.json();
+    setViewCountData(countResponse);
   };
 
   return (
@@ -69,10 +71,20 @@ function App() {
 
         <Routes>
           {/* linked up props to api data thats stored in "countries" state variable */}
-          <Route path="/" element={<Home countriesData={countries} />} />
+          <Route
+            path="/"
+            element={
+              <Home countriesData={countries} getViewCount={getViewCount} />
+            }
+          />
           <Route
             path="/CountryDetail/:countryName"
-            element={<CountryDetail countriesData={countries} />}
+            element={
+              <CountryDetail
+                countriesData={countries}
+                getViewCount={getViewCount}
+              />
+            }
           />
           <Route
             path="/SavedCountries"

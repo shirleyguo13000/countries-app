@@ -1,7 +1,7 @@
 import CountryCard from "../components/CountryCard";
 import { useState } from "react";
 
-function Home({ countriesData }) {
+function Home({ countriesData, getViewCount }) {
   // new variable to sort data into alphabetical order
   const sortedCountries = [...countriesData].sort((a, b) =>
     a.name.common.localeCompare(b.name.common),

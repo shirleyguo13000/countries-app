@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-function CountryDetail({ countriesData }) {
+function CountryDetail({ countriesData, getViewCount, viewCountData }) {
   const countryName = useParams().countryName;
   // .find() to help match API data to the country that is clicked on
   const country = countriesData.find(
@@ -10,6 +11,7 @@ function CountryDetail({ countriesData }) {
   // guard case to help prevent site from crashing while API is being fetched
   if (!country) return <p>Loading...</p>;
 
+  // POST api call to send saved country data to database
   const storeSavedCountry = async () => {
     await fetch("/api/save-one-country", {
       method: "POST",
@@ -21,6 +23,10 @@ function CountryDetail({ countriesData }) {
   const handleSave = () => {
     storeSavedCountry();
   };
+  // calls API for view count upon inital page load
+  useEffect(() => {
+    getViewCount(country);
+  }, []);
 
   return (
     <div>
@@ -47,7 +53,10 @@ function CountryDetail({ countriesData }) {
           <p className="country-details-p">Population: {country.population}</p>
           <p className="country-details-p">Capital: {country.capital}</p>
           <p className="country-details-p">Region: {country.region}</p>
-          <p className="country-details-p">Viewed: </p>
+          <p className="country-details-p">
+            {/* guard to display "loading..." while view count is loading */}
+            Viewed: {viewCountData ? viewCountData : "Loading..."}
+          </p>
         </div>
       </div>
     </div>
