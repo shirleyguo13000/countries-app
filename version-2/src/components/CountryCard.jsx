@@ -7,7 +7,7 @@ function CountryCard({ country, getViewCount }) {
     //  Dynamic router to make URL update according to country name in UI link
     <Link to={`/CountryDetail/${country.name.common}`}>
       {/* div for css styling */}
-      <div className="country-card" onClick={() => getViewCount(country)}>
+      <div className="country-card">
         <img
           src={country.flags.svg || country.flags.png}
           alt={country.flags.alt}

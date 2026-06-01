@@ -1,13 +1,38 @@
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function CountryDetail({ countriesData, getViewCount, viewCountData }) {
+function CountryDetail({ countriesData }) {
+  //  state variable declared to store the POST API response
+  const [viewCountData, setViewCountData] = useState(null);
+
   const countryName = useParams().countryName;
   // .find() to help match API data to the country that is clicked on
   const country = countriesData.find(
     (c) => c.name.common.toLowerCase() === countryName.toLowerCase(),
   );
+
+  //   POST country view count API call and recording response in setViewCount
+  const getViewCount = async () => {
+    const response = await fetch("/api/update-one-country-count", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        country_name: country.name.common,
+      }),
+    });
+    const countResponse = await response.json();
+    setViewCountData(countResponse.count);
+  };
+
+  useEffect(() => {
+    if (country) {
+      getViewCount();
+    }
+  }, [country]);
+
   // guard case to help prevent site from crashing while API is being fetched
   if (!country) return <p>Loading...</p>;
 
@@ -23,10 +48,6 @@ function CountryDetail({ countriesData, getViewCount, viewCountData }) {
   const handleSave = () => {
     storeSavedCountry();
   };
-  // calls API for view count upon inital page load
-  useEffect(() => {
-    getViewCount(country);
-  }, []);
 
   return (
     <div>
@@ -55,7 +76,7 @@ function CountryDetail({ countriesData, getViewCount, viewCountData }) {
           <p className="country-details-p">Region: {country.region}</p>
           <p className="country-details-p">
             {/* guard to display "loading..." while view count is loading */}
-            Viewed: {viewCountData ? viewCountData : "Loading..."}
+            Viewed: {viewCountData}
           </p>
         </div>
       </div>
