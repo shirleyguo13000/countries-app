@@ -21,7 +21,7 @@ function SavedCountries({ countriesData }) {
   const getUserNewestInfo = async () => {
     const response = await fetch("/api/get-newest-user");
     const data = await response.json();
-    setNewUserName(data[0].name);
+    setNewUserName(data.name);
   };
 
   // Update the state when input values change
@@ -47,14 +47,12 @@ function SavedCountries({ countriesData }) {
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
-    // function call for POST request here!
-    storeUserData(formData);
+    await storeUserData(formData); // wait for the POST to finish
+    await getUserNewestInfo(); // then fetch the (now updated) newest user
 
-    // reset the form to empty state
     setFormData({
       fullName: "",
       email: "",
