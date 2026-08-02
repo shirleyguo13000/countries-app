@@ -84,9 +84,10 @@ function SavedCountries({ countriesData }) {
 
   // matching the GET API data with the countries API data by using find array withn array method
   const savedCountriesLoop = savedCountries.map((name) => {
-    return countriesData.find((item) => item.name.common === name.country_name);
+    return countriesData.find(
+      (item) => item.names.common === name.country_name,
+    );
   });
-
   return (
     <>
       <div className="saved-countries-div">
@@ -94,7 +95,7 @@ function SavedCountries({ countriesData }) {
         <div className="grid-container">
           {savedCountriesLoop.map((country, index) => (
             <CountryCard
-              key={country?.name?.common || index}
+              key={country?.names?.common || index}
               country={country}
             />
           ))}
