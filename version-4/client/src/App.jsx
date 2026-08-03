@@ -15,11 +15,16 @@ function App() {
   const countryApi = async () => {
     try {
       const response = await fetch(
-        `https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders`,
+        "https://api.restcountries.com/countries/v5?pretty=1",
+        {
+          headers: {
+            Authorization: "Bearer rc_live_2bdf9dc4455b48079e7cd5380bd4d32e",
+          },
+        },
       );
       const data = await response.json();
       console.log("data", data);
-      setCountries(data);
+      setCountries(data.data.objects);
       // if API fails to load, countries data will be sourced from local js file
     } catch (error) {
       console.log("error:", error.message);
