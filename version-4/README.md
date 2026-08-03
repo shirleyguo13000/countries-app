@@ -13,16 +13,16 @@ Here's the link to view the live app: (https://fancy-starship-815da9.netlify.app
 Here is where you'll include a screenshot of your project to show it off! 
 
 
-Home page of the countries app
+###Here's a snapshot of the home page of the countries app
 <img width="1423" height="777" alt="Screenshot 2026-08-02 at 7 49 09 PM" src="https://github.com/user-attachments/assets/4725f173-82d9-4ef5-8967-cba8814463dc" />
 
 
-Saved countries page
+###Here's the 'Saved countries' page
 <img width="1425" height="776" alt="Screenshot 2026-08-02 at 7 49 35 PM" src="https://github.com/user-attachments/assets/62fde824-662c-4f07-8329-475367127442" />
 
 
 
-Individual country card with more information about each country. In this case, we chose Algeria.
+###Individual country card with more information about each country. In this case, we chose Algeria.
 <img width="1440" height="777" alt="Screenshot 2026-08-02 at 7 49 59 PM" src="https://github.com/user-attachments/assets/97108cac-a8e4-4628-9eec-cddea80bd0b1" />
 
 Instructions to include a screenshot into your README file: 
