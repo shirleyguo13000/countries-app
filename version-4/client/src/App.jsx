@@ -15,31 +15,12 @@ function App() {
   const countryApi = async () => {
     try {
       const response = await fetch(
-        "https://api.restcountries.com/countries/v5",
-        {
-          headers: {
-            Authorization: "Bearer rc_live_2bdf9dc4455b48079e7cd5380bd4d32e",
-          },
-        },
-      )
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (data) {
-          console.log(data);
-        });
-
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        `https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region,cca3,borders`,
+      );
       const data = await response.json();
-
-      // CRITICAL: Extract ONLY the objects array from the nested response
-      const countries = data.data?.objects || [];
-
-      if (countries.length === 0) {
-        throw new Error("No countries returned");
-      }
-
-      setCountries(countries); // Pass only the array, not the whole response
+      console.log("data", data);
+      setCountries(data);
+      // if API fails to load, countries data will be sourced from local js file
     } catch (error) {
       console.log("error:", error.message);
       setCountries(localData);
@@ -78,10 +59,7 @@ function App() {
             path="/CountryDetail/:countryName"
             element={<CountryDetail countriesData={countries} />}
           />
-          <Route
-            path="/SavedCountries"
-            element={<SavedCountries countriesData={countries} />}
-          />
+          <Route path="/SavedCountries" element={<SavedCountries />} />
         </Routes>
       </div>
     </>
