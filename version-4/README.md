@@ -13,7 +13,7 @@ Here's the link to view the live app: (https://fancy-starship-815da9.netlify.app
 Here is where you'll include a screenshot of your project to show it off! 
 
 
-## Here's a snapshot of the home page of the countries app
+### Here's a snapshot of the home page of the countries app
 <img width="1423" height="777" alt="Screenshot 2026-08-02 at 7 49 09 PM" src="https://github.com/user-attachments/assets/4725f173-82d9-4ef5-8967-cba8814463dc" />
 
 
