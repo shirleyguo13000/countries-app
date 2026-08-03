@@ -18,10 +18,17 @@ function App() {
         "https://api.restcountries.com/countries/v5",
         {
           headers: {
-            Authorization: `Bearer rc_live_2bdf9dc4455b48079e7cd5380bd4d32e`,
+            Authorization: "Bearer rc_live_2bdf9dc4455b48079e7cd5380bd4d32e",
           },
         },
-      );
+      )
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          console.log(data);
+        });
+
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
 
