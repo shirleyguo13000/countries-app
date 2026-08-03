@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import CountryCard from "../components/CountryCard";
-import App from "../App";
 
 function SavedCountries({ countriesData }) {
   // holds the data of saved countries from FETCH
@@ -72,7 +71,7 @@ function SavedCountries({ countriesData }) {
     const response = await fetch("/api/get-all-saved-countries");
     const data = await response.json();
     setSavedCountries(data);
-    console.log(data);
+    console.log("saved countries:", data);
   };
 
   // const handleClick = () => { };
