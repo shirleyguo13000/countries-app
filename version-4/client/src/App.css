@@ -214,3 +214,99 @@ form input {
         margin-left: 1rem;
     }
 }
+
+/* ---------- Filter bar ---------- */
+
+.filter-bar {
+    margin: 2.5rem 1.5rem 0;
+}
+
+.filter-bar-controls {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.filter-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111517;
+}
+
+.filter-select {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    font-weight: 350;
+    color: #111517;
+    background-color: #ffffff;
+    border: 1px solid #858585;
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    min-width: 230px;
+    cursor: pointer;
+}
+
+.filter-select:hover {
+    border-color: #7672ce;
+}
+
+.filter-reset-btn {
+    font-family: Nunito Sans;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #7672ce;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+}
+
+.filter-reset-btn:hover {
+    background-color: #5f5bb8;
+}
+
+.filter-summary {
+    font-size: 16px;
+    font-weight: 350;
+    color: #111517;
+    margin: 1rem 0 0;
+}
+
+/* the grid sets its own large top margin, which is too much space once the
+   filter bar sits above it */
+.filter-bar + .grid-container {
+    margin-top: 1.5rem;
+}
+
+.no-results,
+.loading-message {
+    font-size: 18px;
+    color: #111517;
+    margin: 3rem 1.5rem;
+}
+
+@media (max-width: 650px) {
+    .filter-bar {
+        margin: 1.5rem 1rem 0;
+    }
+
+    .filter-bar-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-select {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+.saved-countries-note {
+    font-size: 15px;
+    color: #111517;
+    margin: 2rem 1.5rem 0;
+}
