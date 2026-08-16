@@ -1,18 +1,50 @@
+import { useState } from "react";
 import CountryCard from "../components/CountryCard";
+import FilterBar from "../components/FilterBar";
+import {
+  filterCountries,
+  getDisplayMetric,
+  NO_FILTER,
+} from "../utils/filterCountries";
 
-function Home({ countriesData }) {
-  // new variable to sort data into alphabetical order
-  const sortedCountries = [...countriesData].sort((a, b) =>
-    a.names.common.localeCompare(b.names.common),
-  );
+function Home({ countriesData, economicData }) {
+  // The one active filter. Only one can be set at a time, so this is a single
+  // object rather than one piece of state per filter.
+  const [filter, setFilter] = useState(NO_FILTER);
+
+  // All the filtering and sorting happens in one pure function
+  const visibleCountries = filterCountries(countriesData, filter, economicData);
+
+  // Tells each card whether to show a GDP / exchange rate line
+  const displayMetric = getDisplayMetric(filter);
 
   return (
-    <div className="grid-container">
-      {/* using alphabetically sorted variable of data to be looped through */}
-      {sortedCountries.map((country) => (
-        <CountryCard key={country.codes.alpha_3} country={country} />
-      ))}
-    </div>
+    <>
+      <FilterBar
+        filter={filter}
+        onChange={setFilter}
+        countries={countriesData}
+        resultCount={visibleCountries.length}
+        totalCount={countriesData.length}
+      />
+
+      {visibleCountries.length === 0 ? (
+        <p className="no-results">
+          No countries match that filter. Try another one.
+        </p>
+      ) : (
+        <div className="grid-container">
+          {visibleCountries.map((country) => (
+            <CountryCard
+              key={country.alpha3Code}
+              country={country}
+              displayMetric={displayMetric}
+              economicData={economicData}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 

@@ -79,24 +79,42 @@ function SavedCountries({ countriesData }) {
     getSavedCountries();
   }, []);
 
-  // matching the GET API data with the countries API data by using find array withn array method
-  const savedCountriesLoop = savedCountries.map((name) => {
+  // Saved countries are stored in the database by name, so we match that name back
+  // to the full country record. Alternative spellings are checked too, because the
+  // two country APIs don't always use the same name for the same place.
+  const findSavedCountry = (savedName) => {
     return countriesData.find(
-      (item) => item.names.common === name.country_name,
+      (item) =>
+        item.name === savedName ||
+        item.altSpellings?.includes(savedName),
     );
-  });
+  };
+
+  const savedCountriesLoop = savedCountries
+    .map((saved) => findSavedCountry(saved.country_name))
+    .filter(Boolean);
+
+  // Anything still unmatched is a name the current API doesn't recognise. Showing
+  // it is more useful than letting the card silently disappear.
+  const unmatchedNames = savedCountries
+    .filter((saved) => !findSavedCountry(saved.country_name))
+    .map((saved) => saved.country_name);
+
   return (
     <>
       <div className="saved-countries-div">
         <h1 className="saved-countries-h1">My Saved Countries</h1>
         <div className="grid-container">
-          {savedCountriesLoop.map((country, index) => (
-            <CountryCard
-              key={country?.names?.common || index}
-              country={country}
-            />
+          {savedCountriesLoop.map((country) => (
+            <CountryCard key={country.alpha3Code} country={country} />
           ))}
         </div>
+        {unmatchedNames.length > 0 && (
+          <p className="saved-countries-note">
+            Saved under a name the country list no longer uses:{" "}
+            {unmatchedNames.join(", ")}. Search for it again to re-save it.
+          </p>
+        )}
         {submitted && <h1>Welcome, {newUserName}!</h1>}
         <form className="saved-countries-form">
           <h2>My Profile</h2>
